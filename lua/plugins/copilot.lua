@@ -1,0 +1,103 @@
+return { {} }
+-- -- return {
+-- --   {
+-- --     "github/copilot.vim",
+-- --     -- Use an event for smarter loading. This loads Copilot the first time you enter insert mode.
+-- --     -- It's slightly better for startup time than `lazy = false`.
+-- --     event = "InsertEnter",
+-- --     init = function()
+-- --       -- All configuration is placed in the `init` function.
+-- --       -- This ensures the settings are applied *before* the plugin loads.
+-- --
+-- --       -- REQUIRED: Set the key to accept a suggestion to Ctrl+Tab.
+-- --       -- The default is <Tab>.
+-- --       vim.g.copilot_acceptance_key = "<C-Tab>"
+-- --
+-- --       -- This makes Copilot's suggestions behave more like a standard completion.
+-- --       -- When you accept, it will feel like you're just confirming a regular popup menu item.
+-- --       vim.g.copilot_suggestion_manager = false
+-- --
+-- --       -- If you want to disable automatic suggestions and only trigger them manually
+-- --       -- uncomment the line below.
+-- --       -- vim.g.copilot_auto_trigger = false
+-- --     end,
+-- --     keys = {
+-- --       -- Example of adding a custom keymap for a Copilot command.
+-- --       -- This opens the Copilot panel to see all suggestions.
+-- --       { "<leader>cp", "<Cmd>Copilot panel<CR>", desc = "Copilot Panel" },
+-- --     },
+-- --   },
+-- -- }
+-- --
+-- --
+-- --
+-- --
+-- return {
+--   {
+--     "github/copilot.vim",
+--     -- The plugin will not load until you run one of its commands.
+--     cmd = "Copilot",
+--     -- The build step will run `:Copilot auth` for you on install/update.
+--     build = ":Copilot auth",
+--     opts = {
+--       -- These are the settings passed to the plugin's setup function.
+--       panel = {
+--         enabled = true,
+--         auto_refresh = true,
+--         keymap = {
+--           jump_prev = "[[",
+--           jump_next = "]]",
+--           accept = "<CR>",
+--           refresh = "gR",
+--           open = "<M-CR>", -- Alt+Enter
+--         },
+--         layout = {
+--           position = "bottom", -- "bottom", "top", "left", "right"
+--           size = "40%",
+--         },
+--       },
+--       suggestion = {
+--         enabled = true,
+--         auto_trigger = true,
+--         -- We are re-mapping the acceptance key here as you requested!
+--         keymap = {
+--           accept = "<C-Tab>",
+--           accept_word = false,
+--           accept_line = false,
+--           next = "<M-]>",
+--           prev = "<M-[>",
+--           dismiss = "<C-e>",
+--         },
+--       },
+--       -- This section is for Copilot Chat.
+--       copilot_node_command = "node", -- See troubleshooting section below
+--       server_opts_overrides = {},
+--     },
+--     -- Add some convenient keymaps for chat functionalities.
+--     keys = {
+--       {
+--         "<leader>cc",
+--         function()
+--           -- Use a function to open the chat window with a prompt.
+--           local input = vim.fn.input "Copilot Chat: "
+--           if input ~= "" then
+--             vim.cmd("Copilot " .. input)
+--           end
+--         end,
+--         desc = "Copilot Chat",
+--       },
+--       {
+--         "<leader>ce", -- "Copilot Explain"
+--         "<cmd>Copilot explain<cr>",
+--         mode = "v", -- Only in visual mode
+--         desc = "Copilot - Explain selection",
+--       },
+--       {
+--         "<leader>cf", -- "Copilot Fix"
+--         "<cmd>Copilot fix<cr>",
+--         mode = "v", -- Only in visual mode
+--         desc = "Copilot - Fix selection",
+--       },
+--     },
+--   },
+-- }

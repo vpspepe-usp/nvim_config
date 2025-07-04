@@ -1,0 +1,59 @@
+return { {} }
+-- -- ~/.config/nvim/lua/plugins/pytest.lua
+--
+-- -- Plugin specification for richardhapb/pytest.nvim
+-- -- This plugin provides an interface for running pytest tests directly within Neovim.
+--
+-- return {
+--   'richardhapb/pytest.nvim',
+--   ft = 'python',
+--
+--   dependencies = {
+--     'nvim-treesitter/nvim-treesitter',
+--     { 'nvim-telescope/telescope.nvim', optional = true },
+--     'nvim-lua/plenary.nvim',
+--   },
+--
+--   config = function()
+--     local pytest = require('pytest')
+--     local telescope_status = pcall(require, 'telescope') -- Safely check if telescope is available
+--
+--     pytest.setup({
+--       output_mode = 'quickfix',
+--       open_output_on_run = true,
+--       close_output_on_success = false,
+--       use_telescope = true, -- Keep this true for integration
+--     })
+--
+--     -- --- DEBUGGING START ---
+--     -- Check if PytestTelescope command is registered immediately after setup
+--     if vim.fn.exists(':PytestTelescope') == 0 then
+--       vim.notify("Pytest.nvim: PytestTelescope command NOT registered by pytest.setup().", vim.log.levels.ERROR)
+--     else
+--       vim.notify("Pytest.nvim: PytestTelescope command IS registered by pytest.setup().", vim.log.levels.INFO)
+--     end
+--
+--     -- Explicitly load the pytest extension for Telescope
+--     -- This is a common pattern for plugins that provide Telescope pickers.
+--     if telescope_status then
+--       vim.notify("Pytest.nvim: Attempting to load Telescope extension...", vim.log.levels.INFO)
+--       pcall(require('telescope').load_extension, 'pytest') -- Safely load the extension
+--       if vim.fn.exists(':PytestTelescope') == 0 then
+--         vim.notify("Pytest.nvim: PytestTelescope command STILL NOT registered AFTER explicit Telescope extension load.", vim.log.levels.ERROR)
+--       else
+--         vim.notify("Pytest.nvim: PytestTelescope command IS registered AFTER explicit Telescope extension load.", vim.log.levels.INFO)
+--       end
+--     else
+--       vim.notify("Pytest.nvim: Telescope module is not available, cannot load pytest Telescope extension.", vim.log.levels.WARN)
+--     end
+--     -- --- DEBUGGING END ---
+--   end,
+--
+--   keys = {
+--     { '<leader>tn', '<cmd>PytestNearest<cr>', desc = 'Pytest: Nearest Test' },
+--     { '<leader>tf', '<cmd>PytestFile<cr>', desc = 'Pytest: Current File' },
+--     { '<leader>tl', '<cmd>PytestLast<cr>', desc = 'Pytest: Last Run' },
+--     { '<leader>ts', '<cmd>PytestTelescope<cr>', desc = 'Pytest: Select Tests (Telescope)' },
+--     { '<leader>to', '<cmd>PytestOutput<cr>', desc = 'Pytest: Open Output' },
+--   },
+-- }

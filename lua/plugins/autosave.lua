@@ -13,6 +13,8 @@ return {
         lua = { "stylua" },
         -- THIS IS THE CHANGE: ruff now handles formatting.
         python = { "ruff_format" },
+        c = { "clang_format" },
+        cpp = { "clang_format" },
 
         -- Other formatters remain the same
         javascript = { "prettierd" },
@@ -29,6 +31,8 @@ return {
     opts = {
       linters_by_ft = {
         python = { "ruff" },
+        c = { "gcc" },
+        cpp = { "g++" },
       },
     },
   },

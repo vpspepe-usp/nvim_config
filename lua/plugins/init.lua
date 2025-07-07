@@ -1,7 +1,7 @@
 return {
   {
     "stevearc/conform.nvim",
-    event = 'BufWritePre', -- uncomment for format on save
+    event = "BufWritePre", -- uncomment for format on save
     opts = require "configs.conform",
   },
 
@@ -12,26 +12,27 @@ return {
       require "configs.lspconfig"
     end,
   },
+
   -- ~/.config/nvim/lua/custom/plugins/init.lua
   -- This is where you add your custom plugins.
   -- Each plugin is defined as a table within this main 'return {}' table.
   -- NvChad's core plugins are typically loaded elsewhere, so you just add yours here.
--- Example for ~/.config/nvim/lua/plugins/auto-session.lua
--- {
---   'rmagatti/auto-session',
---   config = function()
---     require('auto-session').setup({
---       auto_restore_last_session = false, -- THIS MUST BE FALSE
---       auto_session_sync_cwd = true, -- Keep this true for normal operation
---       bypass_netrw_error = true,
---       enabled = true,
---       log_level = 2,
---       -- Also, double-check your vim.opt.sessionoptions in options.lua as well.
---       -- It should have 'localoptions' appended.
---     })
---   end,
---   -- ...
--- },
+  -- Example for ~/.config/nvim/lua/plugins/auto-session.lua
+  -- {
+  --   'rmagatti/auto-session',
+  --   config = function()
+  --     require('auto-session').setup({
+  --       auto_restore_last_session = false, -- THIS MUST BE FALSE
+  --       auto_session_sync_cwd = true, -- Keep this true for normal operation
+  --       bypass_netrw_error = true,
+  --       enabled = true,
+  --       log_level = 2,
+  --       -- Also, double-check your vim.opt.sessionoptions in options.lua as well.
+  --       -- It should have 'localoptions' appended.
+  --     })
+  --   end,
+  --   -- ...
+  -- },
   -- --- auto-session plugin ---
   --   {
   --   "richardhapb/pytest.nvim",

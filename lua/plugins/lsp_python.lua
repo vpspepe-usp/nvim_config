@@ -1,26 +1,26 @@
 return {
   {
-    "neovim/nvim-lspconfig",
-    -- Dependências necessárias para a configuração completa
-    dependencies = {
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
-      "hrsh7th/cmp-nvim-lsp", -- Assumindo que você usa nvim-cmp para autocompletar
-    },
-    ft = "python",
-    config = function()
-      local lspconfig = require "lspconfig"
-
-      -- Python LSP
-      lspconfig.pyright.setup {}
-
-      -- Global LSP keymaps
-      vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
-      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to Declaration" })
-      vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "Go to Implementation" })
-      vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Find References" })
-      vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover Docs" })
-    end,
+    -- "neovim/nvim-lspconfig",
+    -- -- Dependências necessárias para a configuração completa
+    -- dependencies = {
+    --   "williamboman/mason.nvim",
+    --   "williamboman/mason-lspconfig.nvim",
+    --   "hrsh7th/cmp-nvim-lsp", -- Assumindo que você usa nvim-cmp para autocompletar
+    -- },
+    -- ft = "python",
+    -- config = function()
+    --   local lspconfig = require "lspconfig"
+    --
+    --   -- Python LSP
+    --   lspconfig.pyright.setup {}
+    --
+    --   -- Global LSP keymaps
+    --   vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
+    --   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to Declaration" })
+    --   vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "Go to Implementation" })
+    --   vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Find References" })
+    --   vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover Docs" })
+    -- end,
   },
 }
 

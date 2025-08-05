@@ -80,10 +80,11 @@ return {
           -- Argumentos de linha de comando podem ser adicionados aqui.
           -- Ex: cmd = { "clangd", "--query-driver=/usr/bin/g++" }
         },
-        ruff_lsp = {
+        ruff = {
           -- Configurações específicas para o ruff_lsp (se necessário).
           -- Ex: settings = { ruff = { ... } }
         },
+        gopls = {},
 
         -- Exemplo para Lua, com configurações detalhadas
         lua_ls = {
@@ -124,6 +125,11 @@ return {
             local server_opts = servers.lua_ls
             server_opts.capabilities = capabilities
             require("lspconfig").lua_ls.setup(server_opts)
+          end,
+          ["gopls"] = function()
+            local server_opts = servers.gopls
+            server_opts.capabilities = capabilities
+            require("lspconfig").gopls.setup(server_opts)
           end,
 
           -- Handler padrão para qualquer outro servidor que você instalar

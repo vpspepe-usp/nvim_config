@@ -1,0 +1,56 @@
+.
+├── init.lua
+├── lazy-lock.json
+├── LICENSE
+├── lua
+│   ├── autocmds.lua
+│   ├── chadrc.lua
+│   ├── configs
+│   │   ├── conform.lua
+│   │   ├── lazy.lua
+│   │   ├── lspconfig.lua
+│   │   └── treesitter.lua
+│   ├── core
+│   │   └── diagnostics.lua
+│   ├── custom
+│   │   └── configs
+│   ├── keymaps.lua
+│   ├── mappings.lua
+│   ├── options.lua
+│   └── plugins
+│       ├── autosave.lua
+│       ├── autosession.lua
+│       ├── conda.lua
+│       ├── copilot_chat.lua
+│       ├── copilot.lua
+│       ├── fold.lua
+│       ├── init.lua
+│       ├── lazygit.lua
+│       ├── lsp_c.lua
+│       ├── lsp.lua
+│       ├── lsp_python.lua
+│       ├── mcp_hub.lua
+│       ├── neoscroll.lua
+│       ├── neotest_general.lua
+│       ├── neotest.lua
+│       ├── noice.lua
+│       ├── nvim-dap-general.lua
+│       ├── nvim-dap.lua
+│       ├── nvim-tree.lua
+│       ├── pytest.lua
+│       ├── pytrize.lua
+│       ├── remote-ssh.lua
+│       ├── scroller.lua
+│       ├── spectre.lua
+│       ├── surround.lua
+│       ├── swenv.lua
+│       ├── telescope.lua
+│       ├── terminal.lua
+│       ├── tmux.lua
+│       ├── todos.lua
+│       └── venv-selector.lua
+├── README.md
+├── teste.txt
+└── tree.txt
+
+6 directories, 47 files

@@ -12,6 +12,104 @@ return {
       require "configs.lspconfig"
     end,
   },
+  {
+    "hrsh7th/nvim-cmp",
+    -- Usamos a função opts para estender a configuração padrão do NvChad
+    opts = function(_, opts)
+      local cmp = require "cmp"
+      local luasnip = require "luasnip"
+
+      -- 1. Mapeamento de Teclas (Correção para navegação)
+      opts.mapping = {
+
+        -- Navegar com Ctrl+N / Ctrl+P (Padrão Vim)
+        ["<C-p>"] = cmp.mapping.select_prev_item(),
+        ["<C-n>"] = cmp.mapping.select_next_item(),
+
+        -- Navegar com Tab (Inteligentemente verifica snippets)
+        ["<Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+          elseif luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          elseif luasnip.jumpable(-1) then
+            luasnip.jump(-1)
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+
+        -- Confirmar com Enter
+        ["<CR>"] = cmp.mapping.confirm { select = true },
+
+        -- Abrir menu manualmente com Ctrl+Space
+        ["<C-Space>"] = cmp.mapping.complete(),
+      }
+
+      -- 2. Ordenação: Garante que a prioridade (score) seja respeitada
+      opts.sorting = {
+        priority_weight = 2,
+        comparators = {
+          require("cmp.config.compare").offset,
+          require("cmp.config.compare").exact,
+          require("cmp.config.compare").score, -- Isso faz o group_index funcionar
+          require("cmp.config.compare").recently_used,
+          require("cmp.config.compare").kind,
+        },
+      }
+
+      -- 3. Fontes: Define que o LSP (Pyright) é prioridade 1
+      opts.sources = {
+        { name = "nvim_lsp", group_index = 1 }, -- Pyright aparece primeiro
+        { name = "luasnip", group_index = 1 }, -- Snippets aparecem primeiro
+
+        -- { name = "copilot", group_index = 2 }, -- Copilot aparece depois (ou desativado)
+        { name = "buffer", group_index = 2 },
+        { name = "path", group_index = 2 },
+      }
+
+      return opts
+    end,
+  },
+  -- {
+  --   "hrsh7th/nvim-cmp",
+  --   -- Usamos a função opts para estender a configuração padrão do NvChad
+  --   opts = function(_, opts)
+  --     local cmp = require "cmp"
+  --
+  --     -- 1. Ordenação: Garante que a prioridade (score) seja respeitada
+  --     opts.sorting = {
+  --       priority_weight = 2,
+  --       comparators = {
+  --         require("cmp.config.compare").offset,
+  --         require("cmp.config.compare").exact,
+  --         require("cmp.config.compare").score, -- Isso faz o group_index funcionar
+  --         require("cmp.config.compare").recently_used,
+  --         require("cmp.config.compare").kind,
+  --       },
+  --     }
+  --
+  --     -- 2. Fontes: Define que o LSP (Pyright) é prioridade 1 e Copilot é 2
+  --     opts.sources = {
+  --       { name = "nvim_lsp", group_index = 1 }, -- Pyright aparece primeiro
+  --       { name = "luasnip", group_index = 1 }, -- Snippets aparecem primeiro
+  --
+  --       -- { name = "copilot", group_index = 2 }, -- Copilot aparece depois
+  --       { name = "buffer", group_index = 2 },
+  --       { name = "path", group_index = 2 },
+  --     }
+  --
+  --     return opts
+  --   end,
+  -- },
 
   -- ~/.config/nvim/lua/custom/plugins/init.lua
   -- This is where you add your custom plugins.

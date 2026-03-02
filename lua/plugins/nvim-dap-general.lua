@@ -1,0 +1,124 @@
+-- ~/.config/nvim/lua/plugins/dap.lua
+-- Configuração genérica para o nvim-dap, com suporte para Python e C++.
+
+return {
+  {
+    -- "mfussenegger/nvim-dap",
+    -- dependencies = {
+    --   -- Instala e configura automaticamente os adaptadores de depuração
+    --   {
+    --     "jay-babu/mason-nvim-dap.nvim",
+    --     -- Garante que o mason-nvim-dap seja carregado antes do nvim-dap
+    --     dependencies = "mason.nvim",
+    --     -- Configura quais adaptadores devem ser instalados
+    --     opts = {
+    --       ensure_installed = {
+    --         "debugpy", -- Adaptador para Python
+    --         "cppdbg", -- Adaptador para C/C++ (usa gdb ou lldb)
+    --       },
+    --     },
+    --   },
+    --
+    --   -- UI para o debugger
+    --   "rcarriga/nvim-dap-ui",
+    --   -- Mostra variáveis de depuração como texto virtual
+    --   "theHamsta/nvim-dap-virtual-text",
+    --   -- Dependência necessária para o neotest
+    --   "nvim-neotest/nvim-nio",
+    -- },
+    -- config = function()
+    --   local dap = require "dap"
+    --   local dapui = require "dapui"
+    --
+    --   -- =================================================================
+    --   -- 1. CONFIGURAÇÃO DA UI (SINAIS E JANELAS)
+    --   -- =================================================================
+    --   -- Define os ícones para os breakpoints
+    --   vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticSignError" })
+    --   vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "DiagnosticSignError" })
+    --   vim.fn.sign_define("DapStopped", { text = "", texthl = "DiagnosticSignWarn", linehl = "Visual" })
+    --
+    --   -- Configura a UI do DAP
+    --   dapui.setup {}
+    --
+    --   -- Configura o texto virtual
+    --   require("nvim-dap-virtual-text").setup {
+    --     commented = true,
+    --   }
+    --
+    --   -- Abre e fecha a UI automaticamente com a sessão de depuração
+    --   dap.listeners.after.event_initialized["dapui_config"] = function()
+    --     dapui.open()
+    --   end
+    --   dap.listeners.before.event_terminated["dapui_config"] = function()
+    --     dapui.close()
+    --   end
+    --   dap.listeners.before.event_exited["dapui_config"] = function()
+    --     dapui.close()
+    --   end
+    --
+    --   -- =================================================================
+    --   -- 2. CONFIGURAÇÕES DE LANÇAMENTO (PARA CADA LINGUAGEM)
+    --   -- =================================================================
+    --   -- Para Python (gerenciado pelo neotest-python ou debugpy)
+    --   -- O mason-nvim-dap já configura o adaptador.
+    --   -- O neotest irá criar a configuração de lançamento para testes.
+    --   -- Para depurar um ficheiro avulso, o debugpy geralmente funciona sem configuração extra.
+    --
+    --   -- Para C/C++ (cppdbg)
+    --   dap.configurations.cpp = {
+    --     {
+    --       name = "Launch project executable (gdb)",
+    --       type = "cppdbg",
+    --       request = "launch",
+    --       -- O 'program' precisa de apontar para o seu executável compilado do projeto.
+    --       program = function()
+    --         return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+    --       end,
+    --       cwd = "${workspaceFolder}",
+    --       stopAtEntry = false,
+    --     },
+    --     {
+    --       name = "Compile and debug current file",
+    --       type = "cppdbg",
+    --       request = "launch",
+    --       -- Esta função compila o ficheiro atual e depois retorna o caminho do executável.
+    --       program = function()
+    --         local current_file = vim.fn.expand "%:p"
+    --         local executable = vim.fn.expand "%:p:r"
+    --         -- Compila o ficheiro com g++, incluindo símbolos de depuração (-g)
+    --         local compile_command = "g++ -g "
+    --           .. vim.fn.shellescape(current_file)
+    --           .. " -o "
+    --           .. vim.fn.shellescape(executable)
+    --         vim.notify("Compiling: " .. compile_command)
+    --         -- Executa o comando de compilação de forma síncrona
+    --         vim.fn.jobwait(vim.fn.jobstart(compile_command))
+    --         -- Verifica se a compilação foi bem-sucedida
+    --         if vim.fn.executable(executable) == 1 then
+    --           return executable
+    --         else
+    --           vim.notify("Compilation failed!", vim.log.levels.ERROR)
+    --           return nil -- Aborta a depuração se a compilação falhar
+    --         end
+    --       end,
+    --       cwd = "${workspaceFolder}",
+    --       stopAtEntry = true, -- Para no início da função 'main'
+    --     },
+    --   }
+    --   -- Para que a configuração acima funcione para ficheiros .c
+    --   dap.configurations.c = dap.configurations.cpp
+    --
+    --   -- =================================================================
+    --   -- 3. ATALHOS (KEYMAPS)
+    --   -- =================================================================
+    --   vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, { desc = "DAP: Marcar Breakpoint" })
+    --   vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "DAP: Continuar / Iniciar" })
+    --   vim.keymap.set("n", "<leader>do", dap.step_over, { desc = "DAP: Passar por cima (Step Over)" })
+    --   vim.keymap.set("n", "<leader>di", dap.step_into, { desc = "DAP: Entrar em (Step Into)" })
+    --   vim.keymap.set("n", "<leader>dO", dap.step_out, { desc = "DAP: Sair de (Step Out)" })
+    --   vim.keymap.set("n", "<leader>dq", dap.terminate, { desc = "DAP: Terminar Sessão" })
+    --   vim.keymap.set("n", "<leader>du", dapui.toggle, { desc = "DAP: Abrir/Fechar UI" })
+    -- end,
+  },
+}

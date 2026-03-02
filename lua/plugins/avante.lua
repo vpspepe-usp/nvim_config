@@ -8,18 +8,21 @@ return {
     build = "make",
     opts = {
       provider = "copilot",
+      auto_suggestions_provider = "copilot",
     },
+    -- behaviour = {
+    --   auto_suggestions = false, -- Desative isso se o erro persistir, pois gera muitas requisições
+    --   auto_set_highlight_group = true,
+    --   auto_set_keymaps = true,
+    -- },
+    -- Limita o que o Avante envia para a IA
+    -- hints = { enabled = false }, -- Desativa as dicas flutuantes que gastam tokens
     dependencies = {
       "stevearc/dressing.nvim",
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
       "nvim-tree/nvim-web-devicons",
-      {
-        "zbirenbaum/copilot.lua",
-        config = function()
-          require("copilot").setup {}
-        end,
-      },
+      "zbirenbaum/copilot.lua",
       {
         -- support for image pasting
         "HakonHarnes/img-clip.nvim",

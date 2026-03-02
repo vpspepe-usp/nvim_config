@@ -21,7 +21,11 @@ vim.keymap.set("n", "[t", function()
 end, { desc = "Previous todo comment" })
 
 -- You can also specify a list of valid jump keywords
-
+-- No seu arquivo de mappings
+vim.keymap.set("n", "<leader>bk", "<cmd>bd<cr>", { desc = "Buffer Kill (Fechar)" })
+vim.keymap.set("n", "<leader>x", function()
+  require("nvchad.tabufline").close_buffer()
+end, { desc = "Fechar Buffer suavemente" })
 vim.keymap.set("n", "<leader>rN", function()
   vim.wo.relativenumber = not vim.wo.relativenumber
 end)
